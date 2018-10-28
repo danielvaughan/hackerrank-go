@@ -8,7 +8,6 @@
 
 Solutions to HackerRank in Go
 
-
 [1]: https://godoc.org/github.com/danielvaughan/hackerrank-go?status.svg
 [2]: https://godoc.org/github.com/danielvaughan/hackerrank-go
 [3]: https://goreportcard.com/badge/github.com/danielvaughan/hackerrank-go
