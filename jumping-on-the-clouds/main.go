@@ -9,27 +9,19 @@ import (
 	"strings"
 )
 
-// Complete the countingValleys function below.
-func countingValleys(n int32, s string) int32 {
-	var height int32
-	var inValley = false
-	var valleys int32
-	for _, d := range s {
-		if d == 'D' {
-			height--
-			if height == -1 {
-				inValley = height == -1
-			}
+// Complete the jumpingOnClouds function below.
+func jumpingOnClouds(c []int32) int32 {
+	i := 0
+	var jumps int32 = 0
+	for i < len(c)-1 {
+		if i+2 < len(c) && c[i+2] == 0 {
+			i = i + 2
+		} else {
+			i++
 		}
-		if d == 'U' {
-			height++
-			if inValley && height == 0 {
-				valleys++
-				inValley = false
-			}
-		}
+		jumps++
 	}
-	return valleys
+	return jumps
 }
 
 func main() {
@@ -46,9 +38,18 @@ func main() {
 	checkError(err)
 	n := int32(nTemp)
 
-	s := readLine(reader)
+	cTemp := strings.Split(readLine(reader), " ")
 
-	result := countingValleys(n, s)
+	var c []int32
+
+	for i := 0; i < int(n); i++ {
+		cItemTemp, err := strconv.ParseInt(cTemp[i], 10, 64)
+		checkError(err)
+		cItem := int32(cItemTemp)
+		c = append(c, cItem)
+	}
+
+	result := jumpingOnClouds(c)
 
 	fmt.Fprintf(writer, "%d\n", result)
 
