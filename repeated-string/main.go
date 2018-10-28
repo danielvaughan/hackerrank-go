@@ -11,21 +11,19 @@ import (
 
 // Complete the repeatedString function below.
 func repeatedString(s string, n int64) int64 {
-	if s == "a" {
-		return n
-	}
-	rr := ""
-	for int64(len(rr)) < n {
-		rr += s
-	}
-	rr = rr[:n]
-	var count int64 = 0
-	for _, r := range rr {
-		if r == 'a' {
+	var count int64
+	var partialCount int64
+	l := int64(len(s))
+	r := n % l
+	for i, c := range s {
+		if c == 'a' {
 			count++
 		}
+		if int64(i) == r-1 {
+			partialCount = count
+		}
 	}
-	return count
+	return count*((n-r)/l) + partialCount
 }
 
 func main() {
